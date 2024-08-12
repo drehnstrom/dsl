@@ -1,5 +1,15 @@
 # DSL Challenge Lab: Analyzing Click Stream Data
 
+Your company's ecommerce website traffic has grown quickly over the past few months. Though business is increasing, the clickstream data capturing user actions has simply been streamed into Cloud Storage and is not being used effectively. 
+
+Your first goal is to build a batch data pipeline to migrate the data that has been already collected in Cloud Storage and store it in BigQuery.
+
+You also need to build streaming data pipelines that will perform analysis on the data in real-time and save results to Cloud Storage for raw data and BigQuery for processed data.
+
+You need to implement best practices for analyzing streaming data, including proper windowing logic and managing malformed records. Additionally you have been asked to work through developing a CI/CD pipeline for your streaming data pipeline.
+
+Analysts from various departments are interested in using this data. So, you need to share it with the appropriate groups and include the required meta-data to make it understandable. Analysts from different groups will use the data in various ways including business analytics, web analytics and machine learning. You need to share the data so it is easy to understand and query. 
+
 ## Understanding the Data
 
 Sample data is located in the following Cloud Storage bucket. You should copy this data to a bucket in your own Google Coud project. 
@@ -10,7 +20,7 @@ gs://<bucket-to-be-determined>
 
 The data represents visits to a web site. Each visit contains fields related to a user sessions including: Session ID, User ID, Device Type, ect. Visits also contain a collection of events and their related fields. There are three event types: Page View, Add Item to Cart, and Purchase. 
 
-The OpenAPI schema for the data is as follows. Take a few minutes to familiarize yourself with this schema.
+The schema for the data is as follows. Take a few minutes to familiarize yourself with this schema.
 
 ```
 openapi: 3.0.0
