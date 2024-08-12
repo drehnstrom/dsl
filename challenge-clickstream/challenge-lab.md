@@ -1,6 +1,6 @@
-# DSL Challenge Lab: Analyzing Click Stream Data
+# DSL Challenge Lab: Engineering and Analyzing Click Stream Data
 
-Your company's ecommerce website traffic has grown quickly over the past few months. Though business is increasing, the clickstream data capturing user actions has simply been streamed into Cloud Storage and is not being used effectively. 
+Your company's ecommerce website traffic has grown quickly over the past few months. Though business is increasing, the clickstream data capturing user actions has simply been copied into Cloud Storage and is not being used effectively. 
 
 Your first goal is to build a batch data pipeline to migrate the data that has been already collected in Cloud Storage and store it in BigQuery.
 
@@ -15,8 +15,10 @@ Analysts from various departments are interested in using this data. So, you nee
 Sample data is located in the following Cloud Storage bucket. You should copy this data to a bucket in your own Google Coud project. 
 
 ```
-gs://<bucket-to-be-determined>
+gs://challenge-lab-data-dar
 ```
+
+___NOTE: This should be changed to a Google-Owned bucket.___
 
 The data represents visits to a web site. Each visit contains fields related to a user sessions including: Session ID, User ID, Device Type, ect. Visits also contain a collection of events and their related fields. There are three event types: Page View, Add Item to Cart, and Purchase. 
 
@@ -172,7 +174,7 @@ components:
 
 ## Task 1: Migrating the Data to BigQuery
 
-Your task is to not only migrate the data to BigQuery, but also to modify the schema so it is easy for Data Analysts to query. You could simply run an import with the Auto Detect Schema flag enabled. While this would work, it would be hard for most analysts to query the nested fields using SQL. 
+Your task is to not only migrate the data to BigQuery, but also to modify the schema so it is easy for Analysts to query. You could simply run an import with the Auto Detect Schema flag enabled. While this would work, it would be hard for most analysts to query the nested fields using SQL. 
 
 1. Use the ititial schema as a starting point. Re-design the data so it would be more optimized for a BigQuery data warehouse. Draw a diagram of your planned schema changes. 
 
