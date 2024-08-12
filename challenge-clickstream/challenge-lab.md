@@ -1,5 +1,7 @@
 # DSL Challenge Lab: Engineering and Analyzing Click Stream Data
 
+## Introduction
+
 Your company's ecommerce website traffic has grown quickly over the past few months. Though business is increasing, the clickstream data capturing user actions has simply been copied into Cloud Storage and is not being used effectively. 
 
 Your first goal is to build a batch data pipeline to migrate the data that has been already collected in Cloud Storage and store it in BigQuery.
