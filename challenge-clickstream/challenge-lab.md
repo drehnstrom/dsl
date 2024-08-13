@@ -217,7 +217,7 @@ In this task, you will use Google tools to process data in real time. The data i
 
 6. Restart your Pub/Sub message simulator so enough messages are sent to trigger the alert. 
 
-## Using Google Cloud Composer to Orchestrate Data Engineering Tasks
+## Task 4: Using Google Cloud Composer to Orchestrate Data Engineering Tasks
 
 In this task, you will use Apache Airflow and Google Cloud Composer to automate a data engineering task. 
 
@@ -229,7 +229,7 @@ In this task, you will use Apache Airflow and Google Cloud Composer to automate 
 2. Create a subscriber to the Pub/Sub topic that notifies you that the file was succesfully processed. 
 
 
-## Using Dataplex to Share Enterprise Data
+## Task 5: Using Dataplex to Share Enterprise Data
 
 In  this task, you will use Google Cloud Dataplex to share your click stream data with the organization. 
 
