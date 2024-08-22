@@ -213,7 +213,7 @@ In this task, you use Google tools to process data in real time. The data is sen
    3. Calculate page views by minute. Create a dashboard that reports this information.
    4. Run the pipeline in Dataflow. 
 
-5. You want to detect a potential denial of service attack. Create an Apache Beam pipeline that calculates page views per minute. Log this information the Google Cloud logs. Create a log metric that reports this information in a Logging and Monitoring Dashboard. Next, create a log alert that triggers beyond some threshold. When the alert triggers, send yourself an email. 
+5. You want to detect a potential denial of service attack. Create an Apache Beam pipeline that calculates page views per minute. Write this information to the Google Cloud logs. Create a log metric that reports this information in a Logging and Monitoring Dashboard. Next, create a log alert that triggers beyond some threshold. When the alert triggers, send yourself an email. 
 
 6. Restart your Pub/Sub message simulator so enough messages are sent to trigger the alert. 
 
