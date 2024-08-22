@@ -1,4 +1,4 @@
-# DSL Challenge Lab: Engineering and Analyzing Click Stream Data
+# DSL Challenge Lab: Engineering and Analyzing Clickstream Data
 
 ## Introduction
 
@@ -6,23 +6,23 @@ Your company's ecommerce website traffic has grown quickly over the past few mon
 
 Your first goal is to build a batch data pipeline to migrate the data that has been already collected in Cloud Storage and store it in BigQuery.
 
-You also need to build streaming data pipelines that will perform analysis on the data in real-time and save results to Cloud Storage for raw data and BigQuery for processed data.
+You also need to build streaming data pipelines that perform analysis on the data in real-time and save results to Cloud Storage for raw data and BigQuery for processed data.
 
-You need to implement best practices for analyzing streaming data, including proper windowing logic and managing malformed records. Additionally you have been asked to work through developing a CI/CD pipeline for your streaming data pipeline.
+You need to implement best practices for analyzing streaming data, including proper windowing logic and managing malformed records. Additionally, you have been asked to work through developing a CI/CD pipeline for your streaming data pipeline.
 
-Analysts from various departments are interested in using this data. So, you need to share it with the appropriate groups and include the required meta-data to make it understandable. Analysts from different groups will use the data in various ways including business analytics, web analytics and machine learning. You need to share the data so it is easy to understand and query. 
+Analysts from various departments are interested in using this data. So, you need to share it with the appropriate groups and include the required metadata to make it understandable. Analysts from different groups will use the data in various ways including business analytics, web analytics, and machine learning. You need to share the data so it is easy to understand and query. 
 
-## Understanding the Data
+## Understanding the data
 
-Sample data is located in the following Cloud Storage bucket. You should copy this data to a bucket in your own Google Coud project. 
+Sample data is located in the following Cloud Storage bucket. You should copy this data to a bucket in your own Google Cloud project. 
 
 ```
 gs://challenge-lab-data-dar
 ```
 
-___NOTE: This should be changed to a Google-Owned bucket.___
+___NOTE: This should be changed to a Google-owned bucket.___
 
-The data represents visits to a web site. Each visit contains fields related to a user sessions including: Session ID, User ID, Device Type, ect. Visits also contain a collection of events and their related fields. There are three event types: Page View, Add Item to Cart, and Purchase. 
+The data represents visits to a website. Each visit contains fields related to a user's session including: Session ID, User ID, Device Type, etc. Visits also contain a collection of events and their related fields. There are three event types: Page View, Add Item to Cart, and Purchase. 
 
 The schema for the data is as follows. Take a few minutes to familiarize yourself with this schema.
 
@@ -174,11 +174,11 @@ components:
           description: "The quantity of the product purchased."
 ```
 
-## Task 1: Migrating the Data to BigQuery
+## Task 1: Migrating the data to BigQuery
 
-Your task is to not only migrate the data to BigQuery, but also to modify the schema so it is easy for Analysts to query. You could simply run an import with the Auto Detect Schema flag enabled. While this would work, it would be hard for most analysts to query the nested fields using SQL. 
+Your task is to not only migrate the data to BigQuery, but also to modify the schema so it is easy for analysts to query. You could simply run an import with the schema auto-detection flag enabled. While this would work, it would be difficult for most analysts to query the nested fields using SQL. 
 
-1. Use the ititial schema as a starting point. Re-design the data so it would be more optimized for a BigQuery data warehouse. Draw a diagram of your planned schema changes. 
+1. Use the initial schema as a starting point. Redesign the data to be better optimized for a BigQuery data warehouse. Draw a diagram of your planned schema changes. 
 
 2. Write a program to migrate the data into BigQuery. You can do this using Bash, Python, Java, or Dataform, but you need to write a program so it could be run repeatedly. You can use the BigQuery console to help, but the final results need to be code. Create a Dataflow Workbench instance and write the code in Jupyter Notebooks if you like. 
 
@@ -189,54 +189,56 @@ Your task is to not only migrate the data to BigQuery, but also to modify the sc
    4. Visit by Device Type
 
 
-## Task 2: Writing Dataflow Batch Pipelines
+## Task 2: Writing Dataflow batch pipelines
 
-In this task, you need to use Apache Beam and Dataflow to run a batch processing pipeline to accomplish the same job as in the previous task. Read the data from Cloud Storage, parse it, and write it to BigQuery using a schema that is optimized for analytics. 
+In this task, you use Apache Beam and Dataflow to run a batch processing pipeline to accomplish the same job as in the previous task. Read the data from Cloud Storage, parse it, and write it to BigQuery using a schema that is optimized for analytics. 
 
-1. Using Apache Beam, create a Pipeline to migrate the Click Stream data to BigQuery in accordance with the schema you created earlier. Program the pipeline in a Jupyter Notebook. 
+1. Using Apache Beam, create a pipeline to migrate the clickstream data to BigQuery in accordance with the schema you created earlier. Program the pipeline in a Jupyter Notebook. 
 
 2. Once you have the pipeline tested, run it using Google Cloud Dataflow. 
 
-## Task 3: Processing the Data in Real Time
+## Task 3: Processing the data in real time
 
-In this task, you will use Google tools to process data in real time. The data is sent to a Pub/Sub topic. You will program subscribers to process the messages as they arrive. 
+In this task, you use Google tools to process data in real time. The data is sent to a Pub/Sub topic. You program subscribers to process the messages as they arrive. 
 
 1. Write a simulator that creates visits and posts them as messages to a Google Pub/Sub topic. Use variables to control the number of visits sent per minute and how long the simulator should run. You can program this any way you like. 
 
-2. Create a Push subscriber running in Cloud Run or Cloud Functions. Process the messages as they come in. Parse them, and write the data to BigQuery where it can be analyzed. In Looker Studio, create a simple report that shows clicks by page in real time. 
+2. Create a push subscriber running in Cloud Run or Cloud Functions. Process the messages as they come in. Parse them, and write the data to BigQuery where it can be analyzed. In Looker Studio, create a simple report that shows clicks by page in real time. 
 
-3. Do the same thing as the previous step, but program a Pull subscriber. Deploy the program to a Compute Engine Virtual Machine. Use an Instance Group to set up autoscaling. Also, implement some kind of health check that you can use to ensure if the pull process is not running, the machine will be restarted. 
+3. Do the same thing as the previous step, but program a pull subscriber. Deploy the program to a Compute Engine virtual machine. Use an instance group to set up autoscaling. Also, implement some kind of health check that you can use to ensure if the pull process is not running, the machine will be restarted. 
 
 4. Write an Apache Beam pipeline with the following requirements:
    1. Write the raw data to files in Google Cloud Storage at regular intervals. 
    2. Parse the messages and write the data to BigQuery. 
-   3. Calculate page views by minute. Create a Dashboard that reports this information.
+   3. Calculate page views by minute. Create a dashboard that reports this information.
    4. Run the pipeline in Dataflow. 
 
 5. You want to detect a potential denial of service attack. Create an Apache Beam pipeline that calculates page views per minute. Log this information the Google Cloud logs. Create a log metric that reports this information in a Logging and Monitoring Dashboard. Next, create a log alert that triggers beyond some threshold. When the alert triggers, send yourself an email. 
 
 6. Restart your Pub/Sub message simulator so enough messages are sent to trigger the alert. 
 
-## Task 4: Using Google Cloud Composer to Orchestrate Data Engineering Tasks
+## Task 4: Using Google Cloud Composer to orchestrate data engineering tasks
 
-In this task, you will use Apache Airflow and Google Cloud Composer to automate a data engineering task. 
+In this task, you use Apache Airflow and Google Cloud Composer to automate a data engineering task. 
 
 1. Create a Composer pipeline with the following requirements:
-   1. When a file containing Click Stream data is written to a Cloud Storage bucket, trigger the pipeline. 
+   1. When a file containing clickstream data is written to a Cloud Storage bucket, trigger the pipeline. 
    2. Run a Dataflow job that processes the file, parses the data, and writes it to BigQuery. 
    3. After the Dataflow job completes, send a message to Pub/Sub indicating the file was processed. 
 
 2. Create a subscriber to the Pub/Sub topic that notifies you that the file was succesfully processed. 
 
 
-## Task 5: Using Dataplex to Share Enterprise Data
+## Task 5: Using Dataplex to share enterprise data
 
-In  this task, you will use Google Cloud Dataplex to share your click stream data with the organization. 
+In this task, you use Google Cloud Dataplex to share your clickstream data with the organization. 
 
-1. Using Datapplex, create a Data Mesh architecture to share your Click Stream data with the organization. The architecture has the following requirements:
+1. Using Dataplex, create a data mesh architecture to share your clickstream data with the organization. The architecture has the following requirements:
    1. Zones for raw and curated data. 
-   2. The raw zone contains the original JSON data contining the Click Stream events 
+   2. The raw zone contains the original JSON data contining the clickstream events 
    3. The data should be automatically processed and written to BigQuery tables. The BigQuery tables are in the curated zone. 
    4. Share the data using Dataplex security. 
    5. Add appropriate metadata to the curated datasets using Dataplex tags and tag templates. 
-   6. Enable data lineage to tracj changes to data over time. 
+   6. Enable data lineage to track changes to data over time.
+  
+### Congratulations! You built a data pipeline, migrated data that has been already collected in Cloud Storage, and stored it in BigQuery. You also built streaming data pipelines that performed analysis on the data in real-time and saved the results to Cloud Storage for raw data and BigQuery for processed data.
